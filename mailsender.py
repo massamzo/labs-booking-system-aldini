@@ -1,0 +1,7 @@
+def mailtemplate(cognome, nome, codice):
+    return "<html><head><style> html{	height:100%;    }body{    background:linear-gradient(5deg,#25a0fb,#66DED0);    height:100%;    color:white;  background-repeat:no-repeat;  }#main{ box-shadow:0px 0px 10px 0px black;   text-align:left;    width:70%;    padding:5%;  background-color:white;  color:black;  margin-top:20%;}#code{ border-radius:3rem; color:white; letter-spacing:0.1rem;	width:70%;  padding:5%;  text-align:center;    background:linear-gradient(45deg, #25a0fb,#66DED0);}</style></head><body><center><div id='main'><h2>Buongiorno "+cognome+" "+nome+".</h2>\n<p>il codice da utilizzare per continuare con l'iscrizione su prenotazione aldini valeriani è qui sotto</p>\n<div id='code'>"+codice+"</div></div></center></body></html>".format(cognome,nome,codice)
+
+
+def recover_template(nome, password):
+    return "<html><head><style> html{	height:100%;    }body{    background:linear-gradient(5deg,#25a0fb,#66DED0);    height:100%;    color:white;  background-repeat:no-repeat;  }#main{ box-shadow:0px 0px 10px 0px black;   text-align:left;    width:70%;    padding:5%;  background-color:white;  color:black;  margin-top:20%;}#code{ border-radius:3rem; color:white; letter-spacing:0.1rem;	width:70%;  padding:5%;  text-align:center;    background:linear-gradient(45deg, #25a0fb,#66DED0);}</style></head><body><center><div id='main'><h2>Buongiorno "+nome+".</h2>\n<p>La Password associata a questo account è qui sotto </p>\n<div id='code'>"+str(password)+"</div></div></center></body></html>".format(nome,password)
+

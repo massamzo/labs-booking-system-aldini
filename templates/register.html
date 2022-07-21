@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            var a = 0;
+
+            function showpass(){
+
+                if(a == 0){
+                    a = 1;
+                    document.getElementById("pass1").type = "text";
+                }else{
+                    a = 0;
+                    document.getElementById("pass1").type = "password";
+                }
+            }
+            var passchek = true;
+
+            function display(type, tag, valore){
+                var element = document.getElementById(tag);
+                element.style.display = type;
+                element.textContent = valore;
+                
+            }
+
+            
+
+            function checkpass(){
+                var val = document.getElementById('pass1').value;
+                
+                if(val.length < 8){
+                    passchek = false;
+                    display("block", "error", "la password deve contenere almeno 8 caratteri");
+                }else{
+                    passchek = true;
+                    display("none", "error", "");
+                }
+                
+                
+            }
+            function comparepass(){
+                var val2= document.getElementById('pass2').value;
+                var val1 = document.getElementById('pass1').value;
+                if(val1 != val2 && val2.length >= 8){
+                    passchek = false;
+                    display("block", "error", "le due password non coincidono");
+                }else if(val1 == val2){
+                    passchek = true;
+                    display("none", "error", "");
+                }else{
+                    passchek = false;
+                    display("block", "error", "le due password devono coincidere");
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/static/css/login.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cairo">
+    
+    <center>
+        <div id="main" >
+        <table>
+            <tr>
+                <td style="width:40%;text-align: right;">
+                    <img class="images" id="bookicon" src="/static/images/calendar.png"> 
+                </td>
+                <td style="padding-left: 5%;">
+                    <form action="{{url_for('registercheck')}}" method="post">
+                        <table>
+                        <tr>
+                            <td style="width:20%;">
+                                <h2 class="titoli">Iscriviti</h2>
+                            </td>
+                            <td style="padding-left: 5%;">
+                                <p class="errori" id="error">{{ error }}</p>
+                            </td>
+                        </tr>
+                        </table>
+                        <span>Email</span><br>
+                        <input type="email" placeholder="email scolastico" required name="email"><br>
+                        <span>crea password</span><br>
+                        <input type="password" placeholder="password" id="pass1" name="pass1" onkeyup="checkpass()" required id="pass"><br>
+                        <input type="checkbox" onclick="showpass()"> <span>Mostra password</span><br>
+                        <span>conferma password</span>
+                        <input type="password" id='pass2' name="pass2" onkeyup="comparepass()" placeholder="password" required id="pass"><br>
+                        <input type="submit" value="entra">
+                    </form>
+                    <div class="links">Sei già Iscritto? <a href="{{url_for('login')}}">Accedi</a></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

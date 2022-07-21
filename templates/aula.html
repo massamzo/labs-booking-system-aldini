@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/static/css/aula.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cairo">
+        <script>
+           /* var months = ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio","Giugno", "Luglio", "Agosto", "Settembre", "Ottobre","Novembre","Dicembre"];
+            var someDate = new Date('2011', '04', '11', '12', '51', '00');
+            var numberOfDaysToAdd = 365;
+            var result = someDate.setDate(someDate.getDate() + numberOfDaysToAdd);
+            var x = new Date(result);
+            alert(x.getHours());*/
+
+
+            var months = ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio","Giugno", "Luglio", "Agosto", "Settembre", "Ottobre","Novembre","Dicembre"];
+            var giorni = [ "Domenica","Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato"];
+           
+            main_date = new Date('{{data[0]}}', '{{data[1]}}'-1, '{{data[2]}}','{{data[3]}}');
+            
+
+            function getspan(elem){
+
+                    var text = elem.textContent;
+                    text = text.split(' ');
+                    var col = parseInt(text[1]);
+                    var row = parseInt(text[2]);
+
+                    var date = document.getElementsByClassName('heads')[col];
+                    var span = date.childNodes[3].textContent;
+                
+                    var hours = document.getElementsByClassName('hours')[row+2];
+                    var hr2 = hours.textContent.split(':');
+                    hr2 = parseInt(hr2[0])+1;
+
+                    span = span.split('-');
+                    sapn = span.reverse();
+                    span = span.join('-');
+                    span += " "+hours.textContent+":00";
+
+                    return span;
+            }
+
+            function adjust_content(num){
+                var res = main_date.setDate(main_date.getDate()+1);
+                main_date = new Date(res);
+            }
+
+            function check_blocks(){
+                var elements = document.getElementsByClassName('orari');
+                var lists = document.getElementsByClassName('am');
+                var nomi = document.getElementsByClassName('nomi');
+                for(i=0; i < elements.length; i++){
+                    var elem = elements[i];
+                    var text = getspan(elem);
+                    
+                    
+                    for(j=0; j < lists.length; j++){
+                        var text2 = lists[j].textContent;
+                        if(text == text2){
+                            elem.style.backgroundColor = "rgb(255, 217, 215)";
+                            elem.textContent = nomi[j].textContent;
+                            elem.className = "booked";
+                            break;
+                        }
+                         
+                    }
+                    
+                    
+
+                }
+            }
+            function change_li_values(){
+                var lists = document.getElementsByClassName('am');
+                for(i=0; i < lists.length; i++){
+
+                    var text2 = lists[i].textContent;
+
+                    text2 = text2.split(' ');
+
+                    var first = text2[0].split('-');
+                    var second = text2[1].split(':');
+
+                    for(x=0; x < first.length; x++){
+                            first[x] = parseInt(first[x])
+                            first[x] = first[x].toString()
+                    }
+
+                    second[0] = parseInt(second[0]);
+                    second[0] = second[0].toString();
+                    first = first.join('-')
+                    second = second.join(':')
+                    text2 = first + " " + second;
+                    lists[i].textContent = text2;
+                }
+                
+                
+                
+            }
+            function fillHeading(){
+                
+
+                var fields = document.getElementsByClassName("heads");
+                var days = document.getElementsByClassName('giorni');
+                
+                for(i=0; i < fields.length; i++){
+                    adjust_content(i);
+                    
+                    fields[i].innerHTML = months[main_date.getMonth()] + " " + main_date.getDate() + "<br><hr><span class='hiddenDate'>"+main_date.getDate()+"-"+(main_date.getMonth()+1)+"-"+main_date.getFullYear()+"</span>";
+                    days[i].innerHTML = giorni[main_date.getDay()];
+                    console.log(main_date.getDay())
+                }
+
+                document.getElementById('inp').value = main_date.getFullYear()+"-"+(main_date.getMonth()+1)+"-"+main_date.getDate()+"-11";
+            
+                if("{{cal_len}}" == "more"){
+                    document.getElementById('back').style.display = "block";
+                }
+                change_li_values();
+                check_blocks();
+
+                
+            }
+
+            function manda_dati(d){
+                var text = d.textContent;
+                text = text.split(' ');
+                var col = parseInt(text[1]);
+                var row = parseInt(text[2]);
+                
+                var date = document.getElementsByClassName('heads')[col];
+                var span = date.childNodes[3].textContent;
+                
+                var hours = document.getElementsByClassName('hours')[row+2];
+                var hr2 = hours.textContent.split(':');
+                hr2 = parseInt(hr2[0])+1;
+                
+
+                document.getElementById('h2').textContent = "Vuoi prenotare il laboratorio {{aula}} per " + span + " dalle " + hours.textContent + " alle "+hr2+":00" ;
+
+                span = span.split('-');
+                sapn = span.reverse();
+                span = span.join('-');
+                span += " "+hours.textContent+":00";
+                
+                
+                document.getElementById('date').value = span;
+                document.getElementsByTagName("body")[0].style.backgroundColor = "black";
+                document.getElementById('tab').style.display = "none";
+                
+            }
+
+            function back(){
+                
+                document.getElementsByTagName("body")[0].style.backgroundColor = "#fafaeb";
+                document.getElementById('tab').style.display = "block";
+                
+                
+            }
+
+            function load_next(){
+                document.getElementById('form2').submit();
+            }
+
+            function backward(){
+                document.getElementById('inp').value += '-';
+                document.getElementById('form2').submit();
+            }
+        </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $("#div").click(function(){
+                    $("#form").slideUp(300);;
+                });
+            });
+
+            $(document).ready(function(){
+                $(".orari").click(function(){
+                    $("#form").slideDown(300);;
+                });
+            });
+        </script>
+    </head>
+    <body onload="fillHeading()">
+        <div id="tab">
+            <a href="{{url_for('mainpage')}}" ><img src="/static/images/back2.png" id="img2" style="width:4%;"></a>
+        <table>
+           <tr id='intestazione'>
+               <th class="hours"></th>
+               {% for i in range(7)%}
+                <th class="heads"></th>
+               {% endfor %}
+           </tr>
+           <tr>
+               <td class="hours"></td>
+               {% for i in range(7)%}
+               <td class="giorni"></td>
+               {% endfor %}
+           </tr>
+
+           {%for j in range(6)%}
+           <tr>
+               <td class="hours">{{8+j}}:00</td>
+               {% for i in range(7)%}
+               <td class="orari" onclick="manda_dati(this)">Prenota <span class="times">{{i}} {{j}}</span></td>
+               {% endfor %}
+           </tr>
+           {% endfor %}
+        </table>
+        </div>
+
+        <form id="form" action="{{url_for('adding')}}" method="post"> 
+            <h3 id="h2"> </h3>
+            <input type="text" value="{{session['user']}}" name="nome" class="valori">
+            <input type="text" name="date" class="valori" id="date">
+            <input type="submit" value="Prenota" class="butts">
+            <center><div id='div' class="butts" onclick="back()">Ritorna indietro</div></center>
+        </form>
+
+        <form action="{{url_for('aula')}}" method="post" id="form2" >
+            <input type="text" name="dat" id="inp">
+        </form>
+        <img src="/static/images/next.png" class="img" style="top:60%;left:93%;" onclick="load_next()">
+        <img src="/static/images/back.png" class="img" id='back' style="top:60%;left:1%;display: none;" onclick="backward()" >
+    
+        {% for i in range(len)%}
+            <li class="a" ><span class="nomi">{{prenotati[i][0]}}</span><span class="am">{{prenotati[i][1]}}</span></li>
+        {% endfor %}
+    </body>
+</html>

@@ -1,0 +1,119 @@
+body{
+    background-color: #fafaeb;
+    
+}
+table{
+    width:85%;
+}
+
+
+
+table, tr, td, th{
+   
+   border-collapse: collapse;
+   
+    
+    
+}
+table{
+    position: absolute;
+    top:10%;
+    left:5%;
+}
+td,th{
+    padding:2%;
+    text-align: center;
+
+    border-style: solid;
+    border-image-slice: 1;
+    border-width: 1px;
+    border-image-source: linear-gradient(45deg, #25a0fb,#66DED0);
+    background-color: white;
+}
+
+.orari{
+    background: rgb(216, 255, 216) ;
+    transition: 0.2s;
+    font-family: Cairo;
+    
+    
+}
+.orari:hover{
+    cursor: pointer;
+    background-color: rgb(238, 255, 238);
+    box-shadow: 0px 0px 10px 0px;
+}
+
+.times{
+    display: none;
+}
+
+.valori{
+    display: none;
+}
+
+form{
+    background-color: white;
+    width:60%;
+    padding:10%;
+    position: absolute;
+    box-shadow: 0px 0px 20px 0px;
+    padding-left: 5%;
+    padding-right: 5%;
+    text-align: center;
+    top:20%;
+    left:15%;
+    display: none;
+    font-family: Cairo;
+    
+}
+
+.butts{
+    width:70%;
+    padding: 2%;
+    border: none;
+    background:linear-gradient(45deg,rgb(120, 167, 255),rgb(201, 249, 255));
+    font-size: 100%;
+    transition: 0.2s;
+    border-radius: 3rem;
+}
+
+.butts:hover{
+    cursor: pointer;
+    box-shadow: 0px 0px 10px 4px gray;
+}
+
+.hours{
+    border: none;
+    padding-top: 0%;
+    margin-left: 10%;
+    text-align: top;
+    background-color: transparent;
+    
+}
+#div{
+    width:66%;
+    margin-top: 2%;
+    background: rgb(255, 196, 196);
+}
+.img{
+    width:3%;
+    position: absolute;
+    transition:0.2s;
+}
+
+.img:hover{
+    cursor: pointer;
+    box-shadow: 0px 0px 10px 0px gray;
+    border-radius: 50%;
+    width:3.5%;
+}
+.a{
+    display: none;
+    
+}
+
+#img2:hover{
+    cursor: pointer;
+    
+}

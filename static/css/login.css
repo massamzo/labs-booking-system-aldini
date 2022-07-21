@@ -1,0 +1,148 @@
+html{
+    height: fit-content;
+}
+body{
+    background:linear-gradient(5deg, #25a0fb,#66DED0);
+    height:100%;
+}
+#bookicon{
+    width:100%;
+
+}
+.links{
+    font-family: 'Cairo';
+    font-size: large;
+    letter-spacing: 0.06rem;
+
+}
+.links a{
+    font-style: none;
+}
+#main{
+    background-color: white;
+    text-align: left;
+    width:70%;
+    padding: 5%;
+    position: absolute;
+    top:20%;
+    left:10%;
+    border-radius: 2rem;
+   
+}
+table{
+    
+    width:100%;
+}
+td{
+    text-align: left;
+    
+}
+
+form{
+    width:100%;
+    
+}
+
+form > *{
+    margin-top: 2%;
+    margin-bottom: 2%;
+    font-family: 'Cairo';
+}
+
+form > input:hover{
+    background-color: rgb(220, 220, 220);
+}
+input[type=email], input[type=password], input[type=text]{
+    width:80%;
+    height:2.5rem;
+    padding-left: 3%;
+    border: none;
+    border-radius: 3rem;
+    color:black;
+    background-color: rgb(237, 237, 237);
+    transition: 0.2s;
+
+}
+
+input[type=submit]{
+    width:80%;
+    height:2.7rem;
+    border: none;
+    border-radius: 3rem;
+    background: linear-gradient(45deg, #25a0fb,#66DED0);
+    font-size: 120%;
+    color:white;
+}
+
+
+input[type=submit]:hover{
+    background: linear-gradient(45deg, #1a8ae0,#58c0b4);
+    cursor:pointer;
+}
+
+.titoli{
+    letter-spacing: 0.1rem;
+    
+    
+}
+
+@media only screen and (min-width: 1366px) {
+    #main{
+        top:10%;
+    }
+  }
+
+.errori{
+    width:100%;
+    color:rgb(243, 54, 54);
+    font-weight: bold;
+    display: non;
+}
+
+.options{
+    float:left;
+    margin-left:5%;
+    border-radius: 5rem;
+    background: linear-gradient(270deg, #1dddff,#0084db);
+    padding:3%;
+    color:white;
+    font-family: Cairo;
+    margin-top:5%;
+    transition:0.2s;
+}
+
+.options:hover{
+    box-shadow: 0px 0px 10px 0px gray;
+    border:2px solid rgb(167, 255, 251);
+    cursor:pointer;
+}
+
+#formrecover{
+    width:70%;
+    position: absolute;
+    top:20%;
+    left:10%;
+    padding:5%;
+    display: none;
+    background-color: white;
+}
+
+#goback{
+    width:80%;
+    height:1.7rem;
+    border: none;
+    border-radius: 3rem;
+    background-color:rgb(255, 189, 189);
+    font-size: 100%;
+    color:black;
+    padding-top: 0.5%;
+    padding-bottom: 1%;
+    margin-top: 0%;
+    text-align: center;
+    transition: 0.2s;
+    
+}
+#goback:hover{
+    box-shadow: 0px 0px 10px 0px gray;
+    cursor: pointer;
+}

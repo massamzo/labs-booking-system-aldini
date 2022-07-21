@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/static/css/login.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cairo">
+        <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script>
+            var a = 0;
+            
+
+            function showpass(){
+                if(a==0){
+                    a = 1;
+                    document.getElementById("pass1").type = "text";
+                }else{
+                    a = 0;
+                    document.getElementById("pass1").type = "password";
+                }
+            }
+
+           
+        </script>
+    </head>
+    <body>
+        <center>
+        <div id="main">
+        <table >
+            <tr>
+                <td style="width:40%;text-align: right;">
+                    <img class="images" id="bookicon" src="/static/images/calendar.png"> 
+                </td>
+                <td style="padding-left: 5%;">
+                    <form action="{{url_for('checklogin')}}" method="post">
+                        <table>
+                            <tr>
+                                <td style="width:20%;">
+                                    <h2 class="titoli">Accedi</h2>
+                                </td>
+                                <td style="padding-left: 5%;">
+                                    <p class="errori">{{error}}</p>
+                                </td>
+                            </tr>
+                        </table>
+                        <span>Email</span><br>
+                        <input type="email" placeholder="email scolastico" required name="email"><br>
+                        <span>Password</span><br>
+                        <input type="password" id='pass1' placeholder="password" onkeyup="checkpass()" name="pass" required id="pass"><br>
+                        <input type="checkbox" onclick="showpass()"> <span>Mostra password</span><br>
+                        <input type="submit" value="entra">
+                    </form>
+                    <div class="links">Non ti sei ancora inscritto?  <a href="{{url_for('register')}}">Iscriviti</a></div>
+                    <div class="links">Hai dimenticato la password? <a href="{{url_for('recoverpass')}}">Recupera</a></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    
+        </center>
+    </body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            setInterval(function(){
+                var err = document.getElementById('error');
+                d  = new Date();
+                num = d.getTime();
+                testo = parseInt("{{session['target']}}")-num;
+                testo = testo.toString();
+                testo = testo.split('');
+                for(i=0; i < 3; i++){
+                    testo.pop();
+                }
+
+                testo = testo.join("");
+                err.textContent = testo;
+
+                if(testo == '1'){
+                    document.getElementById('code').value = "{{session['codice']}}"+">";
+                    document.getElementById("form").submit();
+                }
+
+            },1000);
+        </script>
+    </head>
+    <body>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/static/css/login.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cairo">
+    </body>
+    <center>
+        <div id="main" >
+        <table>
+            <tr>
+                <td style="width:40%;text-align: right;">
+                    <img class="images" id="bookicon" src="/static/images/calendar.png"> 
+                </td>
+                <td style="padding-left: 5%;">
+                    <form id='form' action="{{url_for('mainpage')}}" method="post">
+                        <table>
+                        <tr>
+                            <td style="width:50%;">
+                                <h2 class="titoli">Inserisci codice</h2>
+                            </td>
+                            
+                            <td style="padding-left: 5%;">
+                                <p class="errori" id="error"></p>
+                            </td>
+                        </tr>
+                        </table>
+                        <span>inserire codice</span><br>
+                        <input type="text" placeholder="codice" id='code' required name="code"><br>
+                        <input type="submit" value="entra">
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </div>
+    
+</html>

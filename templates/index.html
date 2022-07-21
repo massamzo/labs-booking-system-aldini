@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/static/css/style.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cairo">
+        <script>
+
+            function delcookie(){
+                document.getElementById('cookies').submit();
+            }
+        </script>
+    </head>
+    <body>
+        
+        <div id="main">
+            <div id="profilo">
+                <button id="esci" onclick="delcookie()">Esci</button>
+                <form action="{{url_for('delcookie')}}" method="post" id="cookies" style="display: none;">
+                    <input type="text" value="user" name="valore">
+                </form>
+                <table>
+                    <tr>
+                        <td style="width:30%;">
+                            <span><b>Insegnante</b> : {{session['user']}}</span><br>
+                            <span><b>Email</b> : {{email}}</span>
+                        </td>
+                        <td>
+                            <p id="info">Per prenotare un laboratorio, cliccare sul numero aula del laboratorio e troverai davanti un calendario, dove le sezioni in rosso sono gli orari in cui i laboratori sono occupati invece le sezioni non sono colorate sono ancora disponibili</p>
+                        </td>
+                    </tr>
+                </table>
+                
+            </div>
+            <center>
+            <div id="labo">
+            {% for i in lista%}
+            <form class="labs" onclick="this.submit()" method="post" action="{{url_for('aula')}}"> 
+                {{ i }}
+                <input type="text" value="{{ i }}" style="display:none" name="aula">
+            </form>
+            {% endfor %}
+            
+            
+            </div>
+            </center>
+        </div>
+    </body>
+</html>
